@@ -22,18 +22,14 @@ define(['parser', 'view', 'model'], function(parser, view, model){
     }
     
     var searchWord = function(query){
-        //console.log('query', query);
         chrome.runtime.sendMessage({type : 'word', query : query, cursorX : cursorX, cursorY : cursorY}, function(data){
-            //console.log('result : ', data.result);
             model.setResult(data.query, data.result);
             view.renderTooltip(data);
         });
     };
 
     var searchSentence = function(query){
-        //console.log('query', query);
         chrome.runtime.sendMessage({type : 'sentence', query : query, cursorX : cursorX, cursorY : cursorY}, function(data){
-            //console.log('result : ', data.result);
             model.setResult(data.query, data.result);
             view.renderTooltip(data);
         });
@@ -45,6 +41,7 @@ define(['parser', 'view', 'model'], function(parser, view, model){
         }
         clearTimeout(delayTimer);
         if(!query){
+            view.hideTooltip();
             return;
         }
         
@@ -65,6 +62,7 @@ define(['parser', 'view', 'model'], function(parser, view, model){
         }
         clearTimeout(delayTimer);
         if(!query){
+            view.hideTooltip();
             return;
         }
 

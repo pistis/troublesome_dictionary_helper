@@ -1,8 +1,8 @@
-define(['event'],function (event) {
+define(['event'], function(event){
 
     var App = {
-        run : function() {
-            console.log('Initialize App');
+        run : function(){
+            console.log('Initialize Troublesome Dictionary Helper App');
             event.initialize();
         }
     };
