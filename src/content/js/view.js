@@ -159,7 +159,7 @@ define(['jquery'], function($){
                 left = cursorX;
             }
             $el.css({
-                'left' : String(left / zoom) + 'px'
+                'left' : String((left + offsetDistance) / zoom) + 'px'
             });
         },
 
