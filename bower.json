@@ -1,0 +1,22 @@
+{
+  "name": "Troublesome Dictionary Helper",
+  "authors": [
+    "pistis <vamalboro.com@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "require": "http://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js",
+    "jquery-2.2.4.min": "http://code.jquery.com/jquery-2.2.4.min.js"
+  }
+}

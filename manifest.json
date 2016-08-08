@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Troublesome Dictionary Helper",
+  "description": "",
+  "version": "0.1",
+  "permissions": [
+    "activeTab",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "bower_components/require/index.js",
+        "src/content/js/lib/require-cs.js",
+        "src/content/js/main.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "bower_components/jquery-2.2.4.min/index.js",
+      "bower_components/require/index.js",
+      "src/content/js/background.js"
+    ],
+    "persistent": true
+  },
+  "web_accessible_resources": [
+    "src/content/js/main.js",
+    "src/content/js/app.js",
+    "src/content/js/event.js",
+    "src/content/js/parser.js",
+    "src/content/js/view.js",
+    "src/content/js/model.js",
+    "bower_components/jquery-2.2.4.min/index.js"
+  ]
+}
