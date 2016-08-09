@@ -14,6 +14,9 @@
         "http://*/*",
         "https://*/*"
       ],
+      "css": [
+        "src/content/css/style.css"
+      ],
       "js": [
         "bower_components/require/index.js",
         "src/content/js/lib/require-cs.js",

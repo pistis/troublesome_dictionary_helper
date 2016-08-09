@@ -35,30 +35,6 @@ define('view', ['jquery'], function ($){
             elResult.textContent = '';
             elTooltip.appendChild(elResult);
 
-            $(elTooltip).css({
-                'display': 'none',
-                'text-align': 'center',
-                'position': 'absolute',
-                'height': 'auto',
-                'width': 'auto',
-                'z-index': '999999999',
-                'vertical-align': 'middle',
-                'padding': '2px 5px 2px 5px',
-                'margin': '0px 0px 0px 0px',
-                'align': 'absmiddle',
-                'font-size': String(fontSize) + 'pt',
-                'line-height': 'normal',
-                'font-family': '맑은 고딕',
-                'font-weight': 'bold',
-                'color': '#fff',
-                'border': '6px solid transparent',
-                'background-color': '#000',
-                'background-color': 'hsla(0, 0%, 20%, 0.9)',
-                'overflow': 'hidden',
-                'white-space': 'nowrap',
-                'border-radius': '3px'
-            });
-
             return elTooltip;
         },
 
