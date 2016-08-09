@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define('view', ['jquery'], function ($){
     
     var tooltipId = '_troublesome_tooltip';
     var tooltipClass = '_troublesome_tooltip_cls';
@@ -7,15 +7,15 @@ define(['jquery'], function($){
     var fontSize = 9;
     var offsetDistance = 10;
     var View = {
-        isActive : function(){
+        isActive: function (){
             return elDoc && elDoc.body;
         },
         
-        setDocument : function(ownerDoc){
+        setDocument: function (ownerDoc){
             elDoc = ownerDoc;
         },
         
-        createTooltip : function(){
+        createTooltip: function (){
             if(!this.isActive()){
                 return;
             }
@@ -36,33 +36,33 @@ define(['jquery'], function($){
             elTooltip.appendChild(elResult);
 
             $(elTooltip).css({
-                'display' : 'none',
-                'text-align' : 'center',
-                'position' : 'absolute',
-                'height' : 'auto',
-                'width' : 'auto',
-                'z-index' : '999999999',
-                'vertical-align' : 'middle',
-                'padding' : '2px 5px 2px 5px',
-                'margin' : '0px 0px 0px 0px',
-                'align' : 'absmiddle',
-                'font-size' : String(fontSize) + 'pt',
-                'line-height' : 'normal',
-                'font-family' : '맑은 고딕',
-                'font-weight' : 'bold',
-                'color' : '#fff',
-                'border' : '6px solid transparent',
-                'background-color' : '#000',
-                'background-color' : 'hsla(0, 0%, 20%, 0.9)',
-                'overflow' : 'hidden',
-                'white-space' : 'nowrap',
-                'border-radius' : '3px'
+                'display': 'none',
+                'text-align': 'center',
+                'position': 'absolute',
+                'height': 'auto',
+                'width': 'auto',
+                'z-index': '999999999',
+                'vertical-align': 'middle',
+                'padding': '2px 5px 2px 5px',
+                'margin': '0px 0px 0px 0px',
+                'align': 'absmiddle',
+                'font-size': String(fontSize) + 'pt',
+                'line-height': 'normal',
+                'font-family': '맑은 고딕',
+                'font-weight': 'bold',
+                'color': '#fff',
+                'border': '6px solid transparent',
+                'background-color': '#000',
+                'background-color': 'hsla(0, 0%, 20%, 0.9)',
+                'overflow': 'hidden',
+                'white-space': 'nowrap',
+                'border-radius': '3px'
             });
 
             return elTooltip;
         },
 
-        removeTooltip : function(){
+        removeTooltip: function (){
             if(!this.isActive()){
                 return;
             }
@@ -72,7 +72,7 @@ define(['jquery'], function($){
             }
         },
 
-        showTooltip : function(){
+        showTooltip: function (){
             if(!this.isActive()){
                 return;
             }
@@ -82,7 +82,7 @@ define(['jquery'], function($){
             }
         },
 
-        hideTooltip : function(){
+        hideTooltip: function (){
             if(!this.isActive()){
                 return;
             }
@@ -92,7 +92,7 @@ define(['jquery'], function($){
             }
         },
 
-        isShowTooltip : function(){
+        isShowTooltip: function (){
             if(!this.isActive()){
                 return;
             }
@@ -100,11 +100,11 @@ define(['jquery'], function($){
             return elTooltip && elTooltip.style.display === 'block';
         },
         
-        getTooltip : function(){
+        getTooltip: function (){
             return elDoc && elDoc.getElementById(tooltipId);
         },
         
-        renderTooltip : function(data){
+        renderTooltip: function (data){
             if(!this.isActive()){
                 return;
             }
@@ -114,8 +114,8 @@ define(['jquery'], function($){
                 zoom = parseFloat(elDoc.body.style.zoom);
             }
             $(elTooltip).css({
-                'display' : 'block',
-                'font-size' : String(fontSize / zoom) + 'pt'
+                'display': 'block',
+                'font-size': String(fontSize / zoom) + 'pt'
             });
 
             var elResult = document.querySelector('#' + tooltipId + ' .' + tooltipResultClass);
@@ -124,7 +124,7 @@ define(['jquery'], function($){
             this.showTooltip();
         },
         
-        setPositionTooltip : function(el, cursorX, cursorY){
+        setPositionTooltip: function (el, cursorX, cursorY){
             if(!this.isActive()){
                 return;
             }
@@ -150,7 +150,7 @@ define(['jquery'], function($){
                 top = pYOffset;
             }
             $el.css({
-                'top' : String(top) + 'px'
+                'top': String(top) + 'px'
             });
 
             if((parseFloat($el.css('left')) + parseFloat($el.height())) * zoom > $win.scrollLeft() + viewportWidth){
@@ -159,11 +159,11 @@ define(['jquery'], function($){
                 left = cursorX;
             }
             $el.css({
-                'left' : String((left + offsetDistance) / zoom) + 'px'
+                'left': String((left + offsetDistance) / zoom) + 'px'
             });
         },
 
-        isOccuredInTooltip : function(e){
+        isOccuredInTooltip: function (e){
             var $elTarget = $(e.target);
             return $elTarget.attr('id') === tooltipId || $elTarget.parents('#' + tooltipId).length > 0
         }

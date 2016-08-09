@@ -1,7 +1,7 @@
 /**
  * TODO : database에 저장
  */
-define([], function(){
+define('model', [], function(){
 
     var source = {};
     var Model = {

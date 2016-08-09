@@ -2,7 +2,7 @@
  * TODO
  * - en, zh, ko 등 config 설정이 가능하도록
  */
-define([], function(){
+define('parser', [], function(){
 
     var Parser = {
         /**

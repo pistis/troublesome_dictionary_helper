@@ -1,4 +1,4 @@
-define(['parser', 'view', 'model'], function(parser, view, model){
+define('event', ['parser', 'view', 'model'], function(parser, view, model){
     
     var elDoc = null;
     var delayTimer = null;

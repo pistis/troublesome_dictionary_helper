@@ -1,4 +1,4 @@
-define(['event'], function(event){
+define('app', ['event'], function(event){
 
     var App = {
         run : function(){
