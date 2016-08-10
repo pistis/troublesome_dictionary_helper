@@ -23,26 +23,23 @@ define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, pa
     
     var searchWord = function (query){
         var result = model.getResult(query);
+
         if(result){
             view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
+            model.increaseSearchCount(query);
         }else{
             chrome.runtime.sendMessage({type: 'word', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
                 model.setResult(data.query, data.result);
+                model.increaseSearchCount(query);
                 view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, data);
             });
         }
     };
 
     var searchSentence = function (query){
-        var result = model.getResult(query);
-        if(result){
-            view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
-        }else{
-            chrome.runtime.sendMessage({type: 'sentence', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
-                model.setResult(data.query, data.result);
-                view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, data);
-            });
-        }
+        chrome.runtime.sendMessage({type: 'sentence', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
+            view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, data);
+        });
     };
     
     var delaySearchWord = function (query){

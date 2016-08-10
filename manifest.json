@@ -5,6 +5,7 @@
   "version": "0.1",
   "permissions": [
     "activeTab",
+    "storage",
     "https://*/*",
     "http://*/*"
   ],
@@ -41,6 +42,7 @@
     "src/content/js/view.js",
     "src/content/js/model.js",
     "src/content/js/config.js",
+    "src/content/js/storage.js",
     "bower_components/jquery-2.2.4.min/index.js"
   ]
 }
