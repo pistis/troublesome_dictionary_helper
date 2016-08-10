@@ -12,10 +12,17 @@
     line-height: normal;
     font-family: 맑은 고딕;
     font-weight: bold;
-    color: #fff;
     border: 6px solid transparent;
     background-color: hsla(0, 0%, 20%, 0.9);
     overflow: hidden;
     white-space: nowrap;
     border-radius: 3px
+}
+
+._troublesome_tooltip_cls_query {
+    color: #90EE90;
+}
+
+._troublesome_tooltip_cls_result {
+    color: #fff;
 }

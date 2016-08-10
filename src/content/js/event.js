@@ -1,4 +1,4 @@
-define('event', ['jquery', 'parser', 'view', 'model'], function ($, parser, view, model){
+define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, parser, view, model, CONFIG){
     
     var elDoc = null;
     var delayTimer = null;
@@ -22,17 +22,27 @@ define('event', ['jquery', 'parser', 'view', 'model'], function ($, parser, view
     }
     
     var searchWord = function (query){
-        chrome.runtime.sendMessage({type: 'word', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
-            model.setResult(data.query, data.result);
-            view.renderTooltip(data);
-        });
+        var result = model.getResult(query);
+        if(result){
+            view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
+        }else{
+            chrome.runtime.sendMessage({type: 'word', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
+                model.setResult(data.query, data.result);
+                view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, data);
+            });
+        }
     };
 
     var searchSentence = function (query){
-        chrome.runtime.sendMessage({type: 'sentence', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
-            model.setResult(data.query, data.result);
-            view.renderTooltip(data);
-        });
+        var result = model.getResult(query);
+        if(result){
+            view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
+        }else{
+            chrome.runtime.sendMessage({type: 'sentence', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
+                model.setResult(data.query, data.result);
+                view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, data);
+            });
+        }
     };
     
     var delaySearchWord = function (query){
@@ -47,12 +57,7 @@ define('event', ['jquery', 'parser', 'view', 'model'], function ($, parser, view
         
         delayTimer = setTimeout(function (){
             delayTimer = undefined;
-            var result = model.getResult(query);
-            if(result){
-                view.renderTooltip({query: query, result: result, cursorX: cursorX, cursorY: cursorY});
-            }else{
-                searchWord(query);
-            }
+            searchWord(query);
         }, parseInt(delayTime));
     };
 
@@ -68,12 +73,7 @@ define('event', ['jquery', 'parser', 'view', 'model'], function ($, parser, view
 
         delayTimer = setTimeout(function (){
             delayTimer = undefined;
-            var result = model.getResult(query);
-            if(result){
-                view.renderTooltip({query: query, result: result, cursorX: cursorX, cursorY: cursorY});
-            }else{
-                searchSentence(query);
-            }
+            searchSentence(query);
         }, parseInt(delayTime));
     };
     

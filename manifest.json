@@ -40,6 +40,7 @@
     "src/content/js/parser.js",
     "src/content/js/view.js",
     "src/content/js/model.js",
+    "src/content/js/config.js",
     "bower_components/jquery-2.2.4.min/index.js"
   ]
 }

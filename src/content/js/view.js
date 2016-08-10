@@ -1,7 +1,8 @@
-define('view', ['jquery'], function ($){
+define('view', ['jquery', 'config'], function ($, CONFIG){
     
     var tooltipId = '_troublesome_tooltip';
     var tooltipClass = '_troublesome_tooltip_cls';
+    var tooltipQueryClass = '_troublesome_tooltip_cls_query';
     var tooltipResultClass = '_troublesome_tooltip_cls_result';
     var elDoc = null;
     var fontSize = 9;
@@ -29,6 +30,11 @@ define('view', ['jquery'], function ($){
             elTooltip.setAttribute('id', tooltipId);
             elDoc.body.appendChild(elTooltip);
             elTooltip.className = tooltipClass;
+
+            var elQuery = elDoc.createElement('SPAN');
+            elQuery.className = tooltipQueryClass;
+            elQuery.textContent = '';
+            elTooltip.appendChild(elQuery);
 
             var elResult = elDoc.createElement('SPAN');
             elResult.className = tooltipResultClass;
@@ -79,8 +85,8 @@ define('view', ['jquery'], function ($){
         getTooltip: function (){
             return elDoc && elDoc.getElementById(tooltipId);
         },
-        
-        renderTooltip: function (data){
+
+        renderTooltip: function (type, data){
             if(!this.isActive()){
                 return;
             }
@@ -94,10 +100,25 @@ define('view', ['jquery'], function ($){
                 'font-size': String(fontSize / zoom) + 'pt'
             });
 
-            var elResult = document.querySelector('#' + tooltipId + ' .' + tooltipResultClass);
-            elResult.textContent = data.result;
+            this.renderContents(type, data);
             this.setPositionTooltip(elTooltip, data.cursorX, data.cursorY);
             this.showTooltip();
+        },
+
+        renderContents: function (type, data){
+            if(type === CONFIG.SEARCH_TYPE.WORD){
+                var elQuery = document.querySelector('#' + tooltipId + ' .' + tooltipQueryClass);
+                elQuery.textContent = data.query;
+
+                var elResult = document.querySelector('#' + tooltipId + ' .' + tooltipResultClass);
+                elResult.textContent = ' : ' + data.result;
+            }else if(type === CONFIG.SEARCH_TYPE.SENTENCE){
+                var elQuery = document.querySelector('#' + tooltipId + ' .' + tooltipQueryClass);
+                elQuery.textContent = '';
+
+                var elResult = document.querySelector('#' + tooltipId + ' .' + tooltipResultClass);
+                elResult.textContent = data.result;
+            }
         },
         
         setPositionTooltip: function (el, cursorX, cursorY){

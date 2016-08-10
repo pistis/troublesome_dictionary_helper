@@ -5,7 +5,7 @@ require.config({
     }
 });
 
-define('background', ['jquery', 'parser', 'config'], function ($, parser, config){
+define('background', ['jquery', 'parser', 'config'], function ($, parser, CONFIG){
     function onMessage(request, sender, sendResponse){
         if(!request.query){
             return;
@@ -21,21 +21,21 @@ define('background', ['jquery', 'parser', 'config'], function ($, parser, config
     }
 
     function searchWord(request, callback){
-        var searchUrl = config.SEARCH_URL.NAVER;
+        var searchUrl = CONFIG.SEARCH_URL.NAVER;
         var url = searchUrl.replace('{0}', encodeURIComponent(request.query));
         $.ajax({
             url: url,
             success: function (data){
                 var result = parser.parseResultForNaver(data);
                 if(result){
-                    callback({query: request.query, cursorX: request.cursorX, cursorY: request.cursorY, result: request.query + ' : ' + result});
+                    callback({query: request.query, cursorX: request.cursorX, cursorY: request.cursorY, result: result});
                 }
             }
         });
     }
 
     function searchSentence(request, callback){
-        var searchUrl = config.SEARCH_URL.GOOGLE;
+        var searchUrl = CONFIG.SEARCH_URL.GOOGLE;
         var url = searchUrl.replace('{0}', encodeURIComponent(request.query.replace(/\n/g, '')));
         $.ajax({
             url: url,
