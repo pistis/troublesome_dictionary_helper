@@ -11,7 +11,6 @@
     align: absmiddle;
     line-height: normal;
     font-family: 맑은 고딕;
-    font-weight: bold;
     border: 6px solid transparent;
     background-color: hsla(0, 0%, 20%, 0.9);
     overflow: hidden;
@@ -20,6 +19,7 @@
 }
 
 ._troublesome_tooltip_cls_query {
+    font-weight: bold;
     color: #90EE90;
 }
 
