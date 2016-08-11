@@ -4,14 +4,14 @@
 define('model', ['storage', 'config', 'util'], function (storage, CONFIG, util){
 
     var source = null;
-    storage.initialize();
-    storage.load(CONFIG.STORAGE.KEY, function (items){
-        source = (items && items[CONFIG.STORAGE.KEY]) ? items[CONFIG.STORAGE.KEY] : {};
-        console.log('load ', source);
-        var bytes = util.getByteLength(JSON.stringify(source));
-        console.log('[load] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
-        Model.syncToStorage();
-    });
+    //storage.initialize();
+    //storage.load(CONFIG.STORAGE.KEY, function (items){
+    //    source = (items && items[CONFIG.STORAGE.KEY]) ? items[CONFIG.STORAGE.KEY] : {};
+    //    console.log('load ', source);
+    //    var bytes = util.getByteLength(JSON.stringify(source));
+    //    console.log('[load] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
+    //    //Model.syncToStorage();
+    //});
     var Model = {
         createItem: function (query, result){
             return {

@@ -16,7 +16,7 @@ define('storage', ['util'], function (util){
                     //console.log('old ', storageChange.oldValue);
                     //console.log('new ', storageChange.newValue);
                     var bytes = util.getByteLength(JSON.stringify(storageChange.newValue));
-                    console.log('[on change] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
+                    console.log(storageChange, ' [on change] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
                 }
             });
         },
