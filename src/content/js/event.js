@@ -1,4 +1,4 @@
-define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, parser, view, model, CONFIG){
+define('event', ['jquery', 'parser', 'tooltipView', 'searchView', 'model', 'config'], function ($, parser, tooltipView, searchView, model, CONFIG){
     
     var elDoc = null;
     var delayTimer = null;
@@ -25,30 +25,30 @@ define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, pa
         var result = model.getResult(query);
 
         if(result){
-            view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
+            tooltipView.renderTooltip(CONFIG.SEARCH_TYPE.WORD, {query: query, result: result, cursorX: cursorX, cursorY: cursorY});
             model.increaseSearchCount(query);
         }else{
             chrome.runtime.sendMessage({type: 'word', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
                 model.setResult(data.query, data.result);
                 model.increaseSearchCount(query);
-                view.renderTooltip(CONFIG.SEARCH_TYPE.WORD, data);
+                tooltipView.renderTooltip(CONFIG.SEARCH_TYPE.WORD, data);
             });
         }
     };
 
     var searchSentence = function (query){
         chrome.runtime.sendMessage({type: 'sentence', query: query, cursorX: cursorX, cursorY: cursorY}, function (data){
-            view.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, data);
+            tooltipView.renderTooltip(CONFIG.SEARCH_TYPE.SENTENCE, data);
         });
     };
     
     var delaySearchWord = function (query){
-        if(model.getResult(query) && view.isShowTooltip()){
+        if(model.getResult(query) && tooltipView.isShowTooltip()){
             return;
         }
         clearTimeout(delayTimer);
         if(!query){
-            view.hideTooltip();
+            tooltipView.hideTooltip();
             return;
         }
         
@@ -59,12 +59,12 @@ define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, pa
     };
 
     var delaySearchSentence = function (query){
-        if(model.getResult(query) && view.isShowTooltip()){
+        if(model.getResult(query) && tooltipView.isShowTooltip()){
             return;
         }
         clearTimeout(delayTimer);
         if(!query){
-            view.hideTooltip();
+            tooltipView.hideTooltip();
             return;
         }
 
@@ -81,9 +81,10 @@ define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, pa
     
     var onMove = function (e){
         elDoc = e.target.ownerDocument;
-        view.setDocument(elDoc);
+        tooltipView.setDocument(elDoc);
+        searchView.setDocument(elDoc);
         setCursor();
-        if(!view.isOccuredInTooltip(e)){
+        if(!tooltipView.isOccuredInTooltip(e) || !searchView.isOccuredInLayer(e)){
             delaySearchWord(parser.getText(elDoc, e));
         }
 
@@ -92,9 +93,10 @@ define('event', ['jquery', 'parser', 'view', 'model', 'config'], function ($, pa
     
     var onUp = function (e){
         elDoc = e.target.ownerDocument;
-        view.setDocument(elDoc);
+        tooltipView.setDocument(elDoc);
+        searchView.setDocument(elDoc);
         setCursor();
-        if(!view.isOccuredInTooltip(e)){
+        if(!tooltipView.isOccuredInTooltip(e) || !searchView.isOccuredInLayer(e)){
             delaySearchSentence(getSelectionText());
         }
         $(window).on('mousemove', onMove);

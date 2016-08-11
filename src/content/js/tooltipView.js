@@ -1,4 +1,4 @@
-define('view', ['jquery', 'config'], function ($, CONFIG){
+define('tooltipView', ['jquery', 'config'], function ($, CONFIG){
     
     var tooltipId = '_troublesome_tooltip';
     var tooltipClass = '_troublesome_tooltip_cls';
@@ -7,7 +7,7 @@ define('view', ['jquery', 'config'], function ($, CONFIG){
     var elDoc = null;
     var fontSize = 9;
     var offsetDistance = 10;
-    var View = {
+    var tooltipView = {
         isActive: function (){
             return elDoc && elDoc.body;
         },
@@ -166,6 +166,6 @@ define('view', ['jquery', 'config'], function ($, CONFIG){
         }
     };
     
-    return View;
+    return tooltipView;
     
 });

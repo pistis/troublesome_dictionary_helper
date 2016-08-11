@@ -26,3 +26,34 @@
 ._troublesome_tooltip_cls_result {
     color: #fff;
 }
+
+._troublesome_searched_layer_cls_result {
+    z-index: 999999999;
+    width: 400px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    opacity: 0.5;
+    padding: 20px;
+    overflow: hidden;
+    border: 5px solid rgba(91, 69, 69, 1);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font: normal 16px/1 "Times New Roman", Times, serif;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    background: #000000;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    pointer-events: none;
+}

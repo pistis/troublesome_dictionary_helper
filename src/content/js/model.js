@@ -1,9 +1,9 @@
 /**
  * TODO : database에 저장
  */
-define('model', ['storage', 'config', 'util'], function (storage, CONFIG, util){
+define('model', ['underscore', 'storage', 'config', 'util', 'events'], function (_, storage, CONFIG, util, Events){
 
-    var source = null;
+    var source = {};
     //storage.initialize();
     //storage.load(CONFIG.STORAGE.KEY, function (items){
     //    source = (items && items[CONFIG.STORAGE.KEY]) ? items[CONFIG.STORAGE.KEY] : {};
@@ -12,7 +12,13 @@ define('model', ['storage', 'config', 'util'], function (storage, CONFIG, util){
     //    console.log('[load] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
     //    //Model.syncToStorage();
     //});
+
     var Model = {
+        events: new Events(),
+        getEvents: function (){
+            return this.events;
+        },
+
         createItem: function (query, result){
             return {
                 w: query,  // word
@@ -34,6 +40,7 @@ define('model', ['storage', 'config', 'util'], function (storage, CONFIG, util){
                 return;
             }
             source[query] = this.createItem(query, result);
+            this.events.trigger('SET_RESULT', source);
         },
 
         increaseSearchCount: function (query){
@@ -41,6 +48,14 @@ define('model', ['storage', 'config', 'util'], function (storage, CONFIG, util){
                 return;
             }
             source[query].sc += 1;
+        },
+
+        getSearchCount: function (){
+            if(!source || !source[query]){
+                return 0;
+            }
+
+            return source[query].sc;
         },
 
         syncToStorage: function (){

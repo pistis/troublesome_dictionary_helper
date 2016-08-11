@@ -39,11 +39,14 @@
     "src/content/js/app.js",
     "src/content/js/event.js",
     "src/content/js/parser.js",
-    "src/content/js/view.js",
+    "src/content/js/tooltipView.js",
+    "src/content/js/searchView.js",
     "src/content/js/model.js",
     "src/content/js/config.js",
     "src/content/js/storage.js",
     "src/content/js/util.js",
-    "bower_components/jquery-2.2.4.min/index.js"
+    "src/content/js/events.js",
+    "bower_components/jquery-2.2.4.min/index.js",
+    "bower_components/underscore/underscore-min.js"
   ]
 }
