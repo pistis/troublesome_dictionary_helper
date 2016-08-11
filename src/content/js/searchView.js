@@ -28,6 +28,7 @@ define('searchView', ['jquery', 'underscore', 'model'], function ($, _, model){
             elLayer.setAttribute('id', layerId);
             elDoc.body.appendChild(elLayer);
             elLayer.className = searchedResultClass;
+            elLayer.style.height = $(window).height() + 'px';
 
             return elLayer;
         },
@@ -85,7 +86,7 @@ define('searchView', ['jquery', 'underscore', 'model'], function ($, _, model){
             var html = '<table><thead><th>Word</th><th>Means</th></thead><tbody>';
             _.each(data, function (value){
                 html += '<tr><td>' + value.w + '</td>'
-                    + '<td> : ' + value.m + '</td></tr>';
+                    + '<td>' + value.m + '</td></tr>';
             });
             html += '</tbody></table>';
             elLayer.innerHTML = html;
