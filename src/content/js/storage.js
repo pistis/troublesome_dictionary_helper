@@ -1,7 +1,7 @@
 /**
  * TODO : limit 예외 처리
  */
-define('storage', [], function (){
+define('storage', ['util'], function (util){
 
     var Storage = {
         initialize: function (){
@@ -13,8 +13,10 @@ define('storage', [], function (){
             chrome.storage.onChanged.addListener(function (changes, namespace){
                 for(key in changes){
                     var storageChange = changes[key];
-                    console.log('old ', storageChange.oldValue);
-                    console.log('new ', storageChange.newValue);
+                    //console.log('old ', storageChange.oldValue);
+                    //console.log('new ', storageChange.newValue);
+                    var bytes = util.getByteLength(JSON.stringify(storageChange.newValue));
+                    console.log('[on change] chrome storage size : ', bytes + ' b', ' ', (bytes / 1024).toFixed(2) + ' kb', ' ', (bytes / 1024 / 1024).toFixed(2) + ' mb');
                 }
             });
         },

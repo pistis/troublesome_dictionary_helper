@@ -43,6 +43,7 @@
     "src/content/js/model.js",
     "src/content/js/config.js",
     "src/content/js/storage.js",
+    "src/content/js/util.js",
     "bower_components/jquery-2.2.4.min/index.js"
   ]
 }
