@@ -28,7 +28,7 @@ define('searchView', ['jquery', 'underscore', 'model'], function ($, _, model){
             elLayer.setAttribute('id', layerId);
             elDoc.body.appendChild(elLayer);
             elLayer.className = searchedResultClass;
-            elLayer.style.height = $(window).height() + 'px';
+            elLayer.style.height = ($(window).height() - 100) + 'px';
 
             return elLayer;
         },
@@ -98,6 +98,7 @@ define('searchView', ['jquery', 'underscore', 'model'], function ($, _, model){
         },
 
         onSetResult: function (data){
+            return; // TODO : 숨기거나 접을 수 있도록 하자.
             var source = _(data).sortBy(function (item){
                 return item.w;
             });

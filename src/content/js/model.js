@@ -4,7 +4,7 @@
 define('model', ['underscore', 'storage', 'config', 'util', 'events'], function (_, storage, CONFIG, util, Events){
 
     var source = {};
-    //storage.initialize();
+    storage.initialize();
     //storage.load(CONFIG.STORAGE.KEY, function (items){
     //    source = (items && items[CONFIG.STORAGE.KEY]) ? items[CONFIG.STORAGE.KEY] : {};
     //    console.log('load ', source);
