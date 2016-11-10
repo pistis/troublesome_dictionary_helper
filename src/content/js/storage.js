@@ -1,18 +1,10 @@
 /**
  * TODO : limit 예외 처리
  */
-define('storage', ['firebase', 'util'], function (firebase, util){
+define('storage', ['util'], function (util){
 
     var Storage = {
         initialize: function (){
-            var config = {
-                apiKey: "AIzaSyDufMQKD4bcDLRolMukKbSkKO60q7UFZ7o",
-                authDomain: "troublesome-dictionary-helper.firebaseapp.com",
-                databaseURL: "https://troublesome-dictionary-helper.firebaseio.com",
-                storageBucket: "troublesome-dictionary-helper.appspot.com"
-            };
-            console.log(firebase, util);
-            firebase.initializeApp(config);
             //this.setEventListener();
             //this.clear();
         },
